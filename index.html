@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Wave Velocity Calculator</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        text-align: center;
+      }
+      .slider-container {
+        margin: 20px;
+      }
+      label {
+        display: inline-block;
+        width: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Wave Velocity Calculator</h2>
+      <div class="slider-container">
+        <div>
+          <label for="frequency">Frequency (Hz):</label>
+          <input
+            type="range"
+            id="frequency"
+            min="0"
+            max="100"
+            value="50"
+            oninput="updateValue('frequency', this.value)"
+          />
+          <span id="freqValue">50</span>
+        </div>
+        <div>
+          <label for="wavelength">Wavelength (m):</label>
+          <input
+            type="range"
+            id="wavelength"
+            min="0"
+            max="10"
+            step="0.1"
+            value="5"
+            oninput="updateValue('wavelength', this.value)"
+          />
+          <span id="waveValue">5</span>
+        </div>
+      </div>
+      <h3>Velocity: <span id="velocity">250</span> m/s</h3>
+    </div>
+
+    <script>
+      function calculateVelocity() {
+        var frequency = parseFloat(document.getElementById("frequency").value);
+        var wavelength = parseFloat(
+          document.getElementById("wavelength").value
+        );
+        return (frequency * wavelength).toFixed(2);
+      }
+
+      function updateValue(id, value) {
+        document.getElementById(
+          id === "frequency" ? "freqValue" : "waveValue"
+        ).textContent = value;
+        document.getElementById("velocity").textContent = calculateVelocity();
+      }
+    </script>
+  </body>
+</html>
