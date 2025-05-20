@@ -55,6 +55,7 @@
           <span id="waveValue">5</span>
         </div>
       </div>
+      <p id="formula">Formula: 50 × 5 = 250 m/s</p>
       <h3>Velocity: <span id="velocity">250</span> m/s</h3>
     </div>
 
@@ -67,11 +68,26 @@
         return (frequency * wavelength).toFixed(2);
       }
 
+      function updateFormula() {
+        var frequency = document.getElementById("frequency").value;
+        var wavelength = document.getElementById("wavelength").value;
+        var velocity = calculateVelocity();
+        document.getElementById("formula").textContent =
+          "Formula: " +
+          frequency +
+          " × " +
+          wavelength +
+          " = " +
+          velocity +
+          " m/s";
+      }
+
       function updateValue(id, value) {
         document.getElementById(
           id === "frequency" ? "freqValue" : "waveValue"
         ).textContent = value;
         document.getElementById("velocity").textContent = calculateVelocity();
+        updateFormula();
       }
     </script>
   </body>
